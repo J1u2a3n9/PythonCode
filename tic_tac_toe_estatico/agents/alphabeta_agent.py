@@ -26,9 +26,9 @@ class AlphaBetaAgent(Agent):
         return move
 
     def abminimax(self, board, depth, player, alpha, beta):
-        hash = board.hash
-        if hash in self.u_table:
-            return self.u_table[hash]
+        hash_usable = board.hash
+        if hash_usable in self.u_table:
+            return self.u_table[hash_usable]
 
         self.states_visited += 1       
         valid_moves = self.valid_moves(board, player)
