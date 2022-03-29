@@ -9,7 +9,7 @@ class CeldaState:
     X = Player.X
     O = Player.O
     global texts
-    global textsII
+    global texts_two
 
     all_states = Player.all_players + [empty]
 
@@ -23,7 +23,7 @@ class CeldaState:
 
 class Board(object):
     texts="row_num must be between 0 and"
-    textsII="col_num must be between 0 and"
+    texts_two="col_num must be between 0 and"
     def __init__(self, size=3, num_to_win=None):
         num_to_win = num_to_win or size
         if num_to_win > size:
@@ -42,7 +42,7 @@ class Board(object):
 
     def col(self, col_num):
         if col_num < 0 or col_num >= self.size:
-            raise ValueError(textsII+{}.format(
+            raise ValueError(texts_two+{}.format(
                 self.size))
         return self.usable_board[:, col_num]
 
@@ -50,7 +50,7 @@ class Board(object):
         if row_num < 0 or row_num >= self.size:
             raise ValueError(texts+{}.format(self.size))
         if col_num < 0 or col_num >= self.size:
-            raise ValueError(textsII+ {}.format(self.size))
+            raise ValueError(texts_two+ {}.format(self.size))
         return self.usable_board[row_num, col_num]
         
 

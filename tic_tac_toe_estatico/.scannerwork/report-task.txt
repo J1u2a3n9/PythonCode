@@ -2,5 +2,5 @@ projectKey=TicTacToe
 serverUrl=http://localhost:9000
 serverVersion=9.3.0.51899
 dashboardUrl=http://localhost:9000/dashboard?id=TicTacToe
-ceTaskId=AX_UNUo-buR3p66CpLt-
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_UNUo-buR3p66CpLt-
+ceTaskId=AX_UTPyHbuR3p66CpLt_
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX_UTPyHbuR3p66CpLt_
