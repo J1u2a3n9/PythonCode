@@ -27,31 +27,31 @@ class Board(object):
 
         self.size = size
         self.num_to_win = num_to_win
-        self.board = CeldaState.empty * np.ones(shape=(size, size),dtype=np.int8)
+        self.usable_board = CeldaState.empty * np.ones(shape=(size, size),dtype=np.int8)
         self.matrix = self.create_matrix()
         self.hash = self.initialize_hash()
 
     def row(self, row_num):
         if row_num < 0 or row_num >= self.size:
             raise ValueError("row_num must be between 0 and {}.".format(self.size))
-        return self.board[row_num, :]
+        return self.usable_board[row_num, :]
 
     def col(self, col_num):
         if col_num < 0 or col_num >= self.size:
             raise ValueError("col_num must be between 0 and {}.".format(
                 self.size))
-        return self.board[:, col_num]
+        return self.usable_board[:, col_num]
 
     def cell(self, row_num, col_num):
         if row_num < 0 or row_num >= self.size:
             raise ValueError("row_num must be between 0 and {}.".format(self.size))
         if col_num < 0 or col_num >= self.size:
             raise ValueError("col_num must be between 0 and {}.".format(self.size))
-        return self.board[row_num, col_num]
+        return self.usable_board[row_num, col_num]
         
 
     def main_diagonal(self, offset=0):
-        return np.diagonal(self.board, offset=offset)
+        return np.diagonal(self.usable_board, offset=offset)
 
     def secondary_diagonal(self, offset=0):
         n = self.size - 1
@@ -60,7 +60,7 @@ class Board(object):
         start = n * row_start + n + offset
         stop = n * row_stop + n + offset + 1
         step = n
-        return self.board.ravel()[start:stop:step]
+        return self.usable_board.ravel()[start:stop:step]
 
     def set_cell(self, state, row_num, col_num):
         if state not in CeldaState.all_states:
@@ -83,7 +83,7 @@ class Board(object):
             bitstring = self.matrix[index][state]
             self.hash ^= bitstring
 
-        self.board[row_num, col_num] = state
+        self.usable_board[row_num, col_num] = state
 
         return self
 
@@ -193,7 +193,7 @@ class Board(object):
             player = other_player(player)
 
     def create_matrix(self):
-        #board config matrix, given random values. 
+        #usable_board config matrix, given random values. 
         #2(X, O) by 9(num of tiles) large
         #index X is 0 and O is 1
         array = [[random.getrandbits(32) for i in range(2)] for j in range(self.size * self.size)]
