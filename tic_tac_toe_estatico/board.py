@@ -200,7 +200,7 @@ class Board(object):
         #usable_board config matrix, given random values. 
         #2(X, O) by 9(num of tiles) large
         #index X is 0 and O is 1
-        array = [[random.getrandbits(32) for i in range(2)] for j in range(self.size * self.size)]
+        array = [[random.getrandbits(32) for _ in range(2)] for _ in range(self.size * self.size)]
 
         return array
 
